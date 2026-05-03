@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Especial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<style>
+.btn-simple{
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 12px 18px;
+    background: linear-gradient(45deg, #3498db, #6dd5fa);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+.btn-simple:hover{
+    transform: scale(1.08);
+    background: linear-gradient(45deg, #2980b9, #57c1eb);
+}
+
+.btn-simple:active{
+    transform: scale(0.95);
+}
+</style>
+<body>
+ <button class="btn-simple" onclick="window.location.href='codigo3/index.html'">apachurra el boton🥰</button>
+    <!-- AUDIO PARA LA CARTA -->
+    <audio id="letterMusic">
+        <source src="mus.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Notificación inicial -->
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <div class="notification-icon">✉️</div>
+            <div class="notification-text">
+                <p class="notification-title">Tienes un nuevo mensaje</p>
+                <p class="notification-subtitle">Revisa tu carta especial</p>
+            </div>
+            <div class="notification-close">&times;</div>
+        </div>
+    </div>
+
+    <!-- Carta animada -->
+    <div class="letter-container">
+        <div class="letter-image" id="letterContainer">
+            <div class="animated-mail">
+                <div class="back-fold"></div>
+                <div class="letter">
+                    <div class="letter-border"></div>
+                    <div class="letter-title"></div>
+                    <div class="letter-context"></div>
+                    <div class="letter-stamp">
+                        <div class="letter-stamp-inner"></div>
+                    </div>
+                </div>
+                <div class="top-fold"></div>
+                <div class="body"></div>
+                <div class="left-fold"></div>
+            </div>
+            <div class="shadow"></div>
+        </div>
+        <div class="instruction-text"></div>
+    </div>
+
+    <!-- Modal de la carta abierta -->
+    <div id="letterModal" class="modal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="letter-paper" id="letterPaper">
+                <div class="letter-header">
+                    <h1 id="letterTitle">Carta Especial</h1>
+                    <div class="letter-date" id="letterDate"></div>
+                </div>
+                <div class="letter-body" id="letterBody">
+                    <p class="greeting" id="greeting"></p>
+                    <p id="paragraph1"></p>
+                    <p id="paragraph2"></p>
+                    <p id="paragraph3"></p>
+                    <p id="paragraph4"></p>
+                    <p class="signature" id="signature1"></p>
+                    <p class="signature-name" id="signature2"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensaje final -->
+    <div id="loveMessage" class="love-message">
+        <p id="loveText"></p>
+    </div>
+<div class="imagen-carta">
+    <img src="imagen1.jpg" alt="Imagen de amor">
+</div>
+ <script>
+    
+    // Textos de la carta
+    const letterTexts = {
+    greeting: "Hola,",
+
+paragraph1: "Hoy escribo con el corazón en silencio, tratando de decir lo que nunca pude decirte bien. A veces el amor no basta, o simplemente llega en el momento equivocado… y eso duele más de lo que imaginaba.",
+
+paragraph2: "Fuiste una historia bonita en mi vida, una de esas que no se olvidan fácil. Tu sonrisa, tu forma de ser, y todo lo que compartimos se queda conmigo, aunque ya no estés a mi lado.",
+
+paragraph3: "Tal vez no fuimos lo que esperábamos, tal vez el destino tenía otros planes… pero eso no cambia lo que sentí por ti, ni lo especial que siempre serás en mis recuerdos.",
+
+paragraph4: "Hoy te dejo ir, no porque quiera, sino porque es lo correcto. A veces amar también significa soltar, aunque duela, aunque el corazón no entienda.",
+
+paragraph5: "No es un adiós definitivo… es un hasta luego, porque en alguna parte del tiempo, siempre te llevaré conmigo.",
+
+signature1: "Con cariño y nostalgia,",
+    };
+
+        const loveMessageText = " 🎆";
+
+        function typeText(element, text, speed = 30) {
+            return new Promise((resolve) => {
+                element.textContent = '';
+                let i = 0;
+                const timer = setInterval(() => {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(timer);
+                        resolve();
+                    }
+                }, speed);
+            });
+        }
+
+        async function showLetterWithTyping() {
+
+            // ⭐ REPRODUCIR MÚSICA AL ABRIR LA CARTA ⭐
+            const music = document.getElementById('letterMusic');
+            music.currentTime = 0;
+            music.play().catch(() => {
+                console.log("El navegador bloqueó la reproducción automática.");
+            });
+
+            const modal = document.getElementById('letterModal');
+            const letterPaper = document.getElementById('letterPaper');
+
+            modal.style.display = 'block';
+            modal.classList.add('modal-show');
+
+            setTimeout(() => {
+                letterPaper.classList.add('letter-entrance');
+            }, 100);
+
+            setTimeout(async () => {
+                await typeText(document.getElementById('greeting'), letterTexts.greeting, 40);
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                await typeText(document.getElementById('paragraph1'), letterTexts.paragraph1, 25);
+                await new Promise(resolve => setTimeout(resolve, 300));
+                
+                await typeText(document.getElementById('paragraph2'), letterTexts.paragraph2, 25);
+                await new Promise(resolve => setTimeout(resolve, 300));
+                
+                await typeText(document.getElementById('paragraph3'), letterTexts.paragraph3, 25);
+                await new Promise(resolve => setTimeout(resolve, 300));
+                
+                await typeText(document.getElementById('paragraph4'), letterTexts.paragraph4, 25);
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                await typeText(document.getElementById('signature1'), letterTexts.signature1, 35);
+                await new Promise(resolve => setTimeout(resolve, 200));
+                
+                await typeText(document.getElementById('signature2'), letterTexts.signature2, 35);
+            }, 800);
+        }
+
+        function closeLetter() {
+
+            // ⭐ DETENER MÚSICA AL CERRAR ⭐
+            const music = document.getElementById('letterMusic');
+            music.pause();
+
+            const modal = document.getElementById('letterModal');
+            const letterPaper = document.getElementById('letterPaper');
+            const loveMessage = document.getElementById('loveMessage');
+
+            letterPaper.classList.add('letter-exit');
+
+            setTimeout(() => {
+                modal.classList.remove('modal-show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    letterPaper.classList.remove('letter-entrance', 'letter-exit');
+
+                    Object.keys(letterTexts).forEach(key => {
+                        const element = document.getElementById(key);
+                        if (element) element.textContent = '';
+                    });
+
+                    loveMessage.classList.add('show');
+                    typeText(document.getElementById('loveText'), loveMessageText, 100);
+
+                    setTimeout(() => {
+                        loveMessage.classList.remove('show');
+                    }, 4000);
+                }, 300);
+            }, 500);
+        }
+
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('notification').classList.add('show');
+                setTimeout(() => {
+                    document.getElementById('notification').classList.remove('show');
+                }, 5000);
+            }, 1000);
+        });
+
+        document.querySelector('.notification-close').addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.getElementById('notification').classList.remove('show');
+        });
+
+        document.getElementById('letterContainer').addEventListener('click', function() {
+            document.getElementById('notification').classList.remove('show');
+            showLetterWithTyping();
+        });
+
+        document.getElementById('closeModal').addEventListener('click', closeLetter);
+        document.getElementById('modalOverlay').addEventListener('click', closeLetter);
+    </script>
+</body>
+</html>

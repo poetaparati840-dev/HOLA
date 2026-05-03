@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta para Ti 💌</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    /* 🔥 BOTÓN REGRESAR */
+    .btn-regresar {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 15px;
+      background: #8e44ad;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .btn-regresar:hover {
+      background: #732d91;
+      transform: scale(1.05);
+    }
+    .btn-simple{
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 12px 18px;
+    background: linear-gradient(45deg, #3498db, #6dd5fa);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+.btn-simple:hover{
+    transform: scale(1.08);
+    background: linear-gradient(45deg, #2980b9, #57c1eb);
+}
+
+.btn-simple:active{
+    transform: scale(0.95);
+}
+  </style>
+</head>
+
+<body>
+
+  <button class="btn-simple" onclick="window.location.href='codigo/index.html'">apachurra el boton🥰</button>
+
+  <div class="bg-fade" id="bgFade"></div>
+
+  <div class="container" style="text-align:center;">
+    <canvas id="cartaCanvas" width="400" height="300"></canvas>
+    <div class="subtitle" id="subtitle">💌 Haz clic en la carta para abrirla 💜</div>
+  </div>
+
+  <!-- Papel donde sale el mensaje -->
+  <div class="papel3d" id="papel3d">
+    <img id="imagenCarta" src="imagen1.jpg" style="width:100px; height:auto; border-radius:10px;">
+    <img id="imagenCarta" src="imagen2.jpg" style="width:100px; height:auto; border-radius:10px;">
+    <span id="papelMsg"></span>
+  </div>
+
+  <button class="close-btn" id="closeBtn">&times;</button>
+
+
+  <!-- AUDIOS -->
+  <audio id="openSound" src="https://cdn.pixabay.com/audio/2022/09/26/audio_1b4ecb8a15.mp3" preload="auto"></audio>
+  <audio id="closeSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae6b5.mp3" preload="auto"></audio>
+  <audio id="bgMusic" src="music.mp3" preload="auto" loop></audio>
+
+  <script>
+    function regresar(){
+      window.location.href = "index.html"; // cambia si tu archivo es otro
+    }
+  </script>
+
+  <script src="scrip.js"></script>
+
+</body>
+</html>

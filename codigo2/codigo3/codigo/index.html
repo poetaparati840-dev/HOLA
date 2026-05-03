@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Valentine's Day 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+.btn-simple{
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 12px 18px;
+    background: linear-gradient(45deg, #3498db, #6dd5fa);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+.btn-simple:hover{
+    transform: scale(1.08);
+    background: linear-gradient(45deg, #2980b9, #57c1eb);
+}
+
+.btn-simple:active{
+    transform: scale(0.95);
+}
+
+/* 🔥 NUEVA IMAGEN */
+.imagen-extra {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.imagen-extra img {
+    width: 200px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+</style>
+
+<body>
+
+<button class="btn-simple" onclick="window.location.href='codigo1/index.html'">
+  apachurra el boton🥰
+</button>
+
+<div class="countdown-badge">
+  <span class="time" id="countdown">00d 00h 00m</span>
+</div>
+
+<div class="hearts-container" id="hearts"></div>
+
+<div class="poster-container">
+  <div class="decorative-border"></div>
+
+  <div class="poster-content">
+    <div class="header">
+      <h1>que cunplas tus sueños</h1>
+      <p class="subtitle"></p>
+    </div>
+
+    <div class="main-image">
+      <div class="image-frame">
+        <img src="flor.webp" alt="Valentine's Day Love">
+      </div>
+    </div>
+
+    <div class="message-section">
+      <p>
+Hoy no escribo para celebrar,
+sino para dejar en palabras
+lo que el corazón ya no puede guardar.
+
+Fuiste luz en días nublados,
+calma en medio del ruido,
+y aunque el tiempo pasó sin aviso,
+nunca dejaste de ser algo bonito en mi vida.
+
+A veces las cosas no salen como uno quiere,
+y aunque duela aceptarlo,
+no siempre el amor se queda,
+no siempre dos caminos se vuelven uno.
+
+Me quedo con lo bueno,
+con tu sonrisa,
+con cada momento que, sin darte cuenta,
+hiciste especial para mí.
+
+Tal vez no fui lo que buscabas,
+o tal vez el destino tenía otros planes,
+pero eso no cambia lo que sentí,
+ni lo que aún, en silencio, permanece.
+
+Hoy te dejo ir despacio,
+sin rencor, sin reclamos,
+solo con un nudo en la garganta
+y un montón de recuerdos guardados.
+
+No es un adiós lleno de enojo,
+es uno lleno de cariño,
+de esos que duelen,
+pero que también enseñan.
+
+Ojalá la vida te regale todo lo bonito que mereces,
+que encuentres paz, felicidad
+y alguien que sepa cuidar tu corazón.
+
+Y si algún día piensas en mí,
+solo recuerda que hubo alguien
+que te quiso de verdad,
+aunque no se quedara para siempre.
+
+Esto no es un adiós definitivo…
+es solo un hasta luego,
+porque hay personas que nunca se van del todo,
+aunque ya no estén.
+</p>
+
+      <!-- 🔥 IMAGEN NUEVA -->
+      <div class="imagen-extra">
+        <img src="imagen11.jpg" alt="Imagen de amor">
+      </div>
+
+      <p class="signature"> ❤️</p>
+    </div>
+
+    <div class="footer">
+      <p>con buenos deseos</p>
+    </div>
+  </div>
+</div>
+
+<button class="gift-btn" onclick="openGift()">🎁</button>
+
+<div class="modal" id="giftModal" onclick="closeGift(event)">
+  <div class="modal-content">
+    <h2> ❤️</h2>
+    <p>"❤️𝐍𝐚𝐝𝐢𝐞 𝐞𝐬 𝐜𝐨𝐦𝐨 𝐭𝐮́,❤️ 𝐲 𝐞𝐬𝐚 𝐞𝐬 𝐭𝐮 𝐦𝐚𝐠𝐢𝐚"✨</p>
+    <button class="modal-close" onclick="closeGift(event)">Close</button>
+  </div>
+</div>
+
+<audio autoplay loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
+
+</body>
+</html>
